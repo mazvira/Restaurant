@@ -1,18 +1,16 @@
-package database;
+package project;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.*;
 
 public class Login {
-	Statement stmt = null;
-	Connection c = null;
-	ResultSet rs = null;
 	
 	JFrame f = new JFrame("User Login");
 	JLabel l = new JLabel("User name");
@@ -20,27 +18,11 @@ public class Login {
 	JTextField t = new JTextField(20);
 	JTextField t1 = new JTextField(20);
 	JButton b = new JButton("Login");
+	DatabaseConnectionAndQueries database;
 
 	public Login() {
-	    connect();
+		database = new DatabaseConnectionAndQueries();
 		frame();
-	}
-	public void connect()
-	{
-		try
-		{
-		
-			Class.forName("org.postgresql.Driver");
-			c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Restaurant", "postgres", "12345");
-			stmt = c.createStatement();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
-		}
-		
 	}
 	
 	public void frame()
@@ -62,18 +44,16 @@ public class Login {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try 
-				{
+				
 					String user = t.getText().trim();
-					String pass = t1.getText().trim();
-					
-					String sql  = "select user, pass from Client where user='"+user+"' and pass='" +pass+"'";
-					rs = stmt.executeQuery(sql);
+					String pass = t1.getText().trim();			
 					int count = 0;
-					while(rs.next())
-					{
-						count = count + 1;
-					}
+					try {
+						count = database.isUserExists(user, pass);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}				
 					if(count == 1)
 						JOptionPane.showMessageDialog(null, "User Found, Access Granted");
 					else if(count > 1)
@@ -81,13 +61,7 @@ public class Login {
 					else 
 						JOptionPane.showMessageDialog(null, "User not Found!");
 				}
-				catch(Exception ex)
-				{
-					
-				}
-				
-				
-			}
+			
 		});
 	}
 }
