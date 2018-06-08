@@ -1,5 +1,6 @@
 package project;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -18,6 +19,7 @@ public class Login {
 	JTextField t = new JTextField(20);
 	JTextField t1 = new JTextField(20);
 	JButton b = new JButton("Login");
+	Reservation_Ordering bd;
 	DatabaseConnectionAndQueries database;
 
 	public Login() {
@@ -27,6 +29,7 @@ public class Login {
 	
 	public void frame()
 	{
+	
 		f.setSize(600, 400);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
@@ -55,7 +58,7 @@ public class Login {
 						e1.printStackTrace();
 					}				
 					if(count == 1)
-						JOptionPane.showMessageDialog(null, "User Found, Access Granted");
+						 bd = new Reservation_Ordering();
 					else if(count > 1)
 						JOptionPane.showMessageDialog(null, "Duplicate User, Access denied");
 					else 
