@@ -23,14 +23,18 @@ class RegForm {
 	static JCheckBox chkbox;
 	static JButton submit_btn;
 	static JTextArea output_txtArea;
+	static JLabel login;
+	static JTextField logintext;
+	static JFrame frame;
+	
 	static DatabaseConnectionAndQueries database;
 
 	public RegForm() {
 		database = new DatabaseConnectionAndQueries();
 		// Step 1 : Creating a frame using JFrame class
-		JFrame frame = new JFrame("Реєстраційна Форма");
-		frame.setBounds(200, 100, 700, 600);
+		frame = new JFrame("Реєстраційна Форма");
 		frame.setVisible(true);
+		frame.setSize(1300, 1000);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Step 2 : setting background color of Frame.
@@ -55,7 +59,7 @@ class RegForm {
 		 * components ------------------------------
 		 */
 
-		Font f1 = new Font("Arial", Font.BOLD, 14);
+		Font f1 = new Font("Arial", Font.ITALIC, 18);
 
 		/*
 		 * ----------------------------------- Creating components for Registration
@@ -86,22 +90,29 @@ class RegForm {
 		fathers_txt = new JTextField();
 		fathers_txt.setBounds(180, 170, 180, 30);
 
+		JLabel login = new JLabel("Логін : ");
+		login.setBounds(50, 220, 150, 30);
+
+		// Creating JTextField for Father's name
+		logintext = new JTextField();
+		logintext.setBounds(180, 220, 180, 30);
+
 		// Step 6 : Creating JLabel for Gender
 		JLabel gender_lbl = new JLabel("Стать : ");
-		gender_lbl.setBounds(50, 210, 150, 30);
+		gender_lbl.setBounds(50, 260, 150, 30);
 
 		// Setting Cursor for components
 		Cursor cur = new Cursor(Cursor.HAND_CURSOR);
 
 		// Creating JRadioButton for the Male
 		male = new JRadioButton("Ч");
-		male.setBounds(180, 210, 70, 30);
+		male.setBounds(180, 260, 70, 30);
 		male.setBackground(Color.yellow);
 		male.setCursor(cur);
 
 		// Creating JRadioButton for the Female
 		female = new JRadioButton("Ж");
-		female.setBounds(280, 210, 80, 30);
+		female.setBounds(280, 260, 80, 30);
 		female.setBackground(Color.yellow);
 		female.setCursor(cur);
 
@@ -112,77 +123,71 @@ class RegForm {
 
 		// Step 7 : Creating JLabel for Date of Birth
 		JLabel dob_lbl = new JLabel("Дата Нар : ");
-		dob_lbl.setBounds(50, 250, 100, 30);
+		dob_lbl.setBounds(50, 310, 100, 30);
 
 		// Creating JComboBox for the day
 		String day_arr[] = new String[31];
 		for (int i = 1; i <= 31; i++)
 			day_arr[i - 1] = Integer.toString(i);
 		day = new JComboBox(day_arr);
-		day.setBounds(180, 250, 40, 30);
+		day.setBounds(180, 310, 40, 30);
 
 		// Creating JComboBox for the month
 		String month_arr[] = { "Січ", "Лют", "Бер", "Квіт", "Трав", "Черв", "Лип", "Серп", "Вер", "Жовт", "Лист",
 				"Груд" };
 		month = new JComboBox(month_arr);
-		month.setBounds(230, 250, 60, 30);
+		month.setBounds(230, 310, 60, 30);
 
-		// Creating JComboBox for the year
-		String year_arr[] = new String[70];
-		for (int i = 1951; i <= 2020; i++)
-			year_arr[i - 1951] = Integer.toString(i);
-		year = new JComboBox(year_arr);
-		year.setBounds(300, 250, 60, 30);
+		 String year_arr[] = new String[70];
+		 for (int i = 1951; i <= 2020; i++)
+		   year_arr[i - 1951] = Integer.toString(i);
+		 year = new JComboBox(year_arr);
+		 year.setBounds(300, 310, 60, 30);
 
 		// Step 8 : Creating JLabel for the Address
 		JLabel add_lbl = new JLabel("Адреса : ");
-		add_lbl.setBounds(50, 290, 100, 30);
+		add_lbl.setBounds(50, 340, 100, 30);
 
 		// Creating JTextArea for the address
 		add_txtArea = new JTextArea();
-		add_txtArea.setBounds(180, 290, 180, 100);
+		add_txtArea.setBounds(180, 340, 180, 100);
 
 		// Step 9 : Creating JLabel for the phone
 		JLabel phone_lbl = new JLabel("Телефон : ");
-		phone_lbl.setBounds(50, 400, 100, 30);
+		phone_lbl.setBounds(50, 450, 100, 30);
 
 		// Creating JTextField for the phone
 		phone_txt = new JTextField();
-		phone_txt.setBounds(180, 400, 180, 30);
+		phone_txt.setBounds(180, 450, 180, 30);
 
 		// Step 10 : Creating JLabel for the Email
 		JLabel email_lbl = new JLabel("Email : ");
-		email_lbl.setBounds(50, 440, 100, 30);
+		email_lbl.setBounds(50, 490, 100, 30);
 		// Creating JTextField for the Email
 		email_txt = new JTextField();
-		email_txt.setBounds(180, 440, 180, 30);
+		email_txt.setBounds(180, 490, 180, 30);
 
 		JLabel password_lbl = new JLabel("Пароль : ");
-		password_lbl.setBounds(50, 490, 100, 30);
+		password_lbl.setBounds(50, 540, 100, 30);
 		// Creating JTextField for the Email
 		password_txt = new JPasswordField();
-		password_txt.setBounds(180, 490, 180, 30);
+		password_txt.setBounds(180, 540, 180, 30);
 
 		// Step 11 : Creating JCheckBox for the license agreement
 		chkbox = new JCheckBox("Я приймаю умови користування");
-		chkbox.setBounds(50, 550, 300, 30);
+		chkbox.setBounds(50, 590, 300, 30);
 		chkbox.setBackground(Color.yellow);
 
 		// Step 12 : Creating JButton for submit the details
 		submit_btn = new JButton("Відправити");
-		submit_btn.setBounds(180, 600, 120, 40);
+		submit_btn.setBounds(180, 650, 160, 40);
 		submit_btn.setCursor(cur); // Applying hand cursor on the button
 
 		// Step 18 : Adding ActionListener on submit button
 		submit_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				try {
-					try {
-						submit_action(event);
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					submit_action(event);
 				} finally {
 
 				}
@@ -203,6 +208,7 @@ class RegForm {
 		phone_lbl.setFont(f1);
 		email_lbl.setFont(f1);
 		password_lbl.setFont(f1);
+		login.setFont(f1);
 
 		// Step 14 : Applying Font on all JTextFields, JRadioButtons, JComboBox and
 		// JTextArea
@@ -218,6 +224,7 @@ class RegForm {
 		chkbox.setFont(f1);
 		submit_btn.setFont(f1);
 		output_txtArea.setFont(f1);
+		logintext.setFont(f1);
 
 		// Step 15 : Adding label components to the container
 		c.add(heading_lbl);
@@ -232,6 +239,7 @@ class RegForm {
 		c.add(phone_lbl);
 		c.add(email_lbl);
 		c.add(password_lbl);
+		c.add(login);
 
 		// Step 16 : Adding JTextField, JTextArea, JComboBox, JCheckBox, JRadioButton to
 		// the container
@@ -248,14 +256,23 @@ class RegForm {
 		c.add(chkbox);
 		c.add(submit_btn);
 		c.add(output_txtArea);
+		c.add(logintext);
 	}
 
 	// Step 19 : Reading value from the Registration Form
-	public static void submit_action(ActionEvent event) throws SQLException {
+	public static void submit_action(ActionEvent event) {
 		if (chkbox.isSelected() == true) {
 			Date date = new Date(year.getSelectedIndex(), month.getSelectedIndex(), day.getSelectedIndex());
-			database.insertIntoClients(name_txt.getText(), surname_txt.getText(), fathers_txt.getText(),
-					email_txt.getText(), date, password_txt.getText());
+			try {
+				database.insertIntoClients(name_txt.getText(), surname_txt.getText(), fathers_txt.getText(),
+						email_txt.getText(), date, password_txt.getText());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Reservation_Ordering_for_Client form = new Reservation_Ordering_for_Client();
+			frame.setVisible(false);
+
 			// String name = name_txt.getText();
 			// String fname = fname_txt.getText();
 			/*
@@ -279,6 +296,6 @@ class RegForm {
 		} else {
 			output_txtArea.setText("Please accept the terms and condition");
 		}
-
+		
 	}
 }

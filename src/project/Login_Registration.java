@@ -11,29 +11,41 @@ import javax.swing.*;
 public class Login_Registration {
 	 static JButton reestr;
 	 static JButton login;
+	 int x, y, width, height;
+	 static JFrame frame ;
 	 
 	 public Login_Registration(){
-	   JFrame frame = new JFrame("Автентифікація");
+	   frame = new JFrame("Логін/Реєстрація");
 	
 	   frame.setVisible(true);
-	   //frame.setBounds(200, 100, 700, 600);
+	   frame.setSize(1300, 1000);
 	   frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	   
+	    x = 30;
+		y = 20;
+		width = 200;
+		height = 30;
 	   
 	   Container c = frame.getContentPane();
 	   c.setLayout(null);
 	   Font f = new Font("Arial", Font.BOLD, 20);
+	   Font f2 = new Font("Arial", Font.ITALIC, 18);
 	   
 	   JLabel heading_lbl = new JLabel();
-	   heading_lbl.setBounds(250, 5, 250, 40);
+	   heading_lbl.setBounds(x, y, width, height);
+	   y+=40;
 	   heading_lbl.setText("<html><font><u><b>Логін/Реєстрація</b></u></html>");
 	   heading_lbl.setFont(f);
 	   
 	   reestr = new JButton("Реєстрація");
-	   reestr.setBounds(200, 220, 140, 60);
+	   reestr.setBounds(x, y, width, height);
+	   reestr.setFont(f2);
+	   y+=40;
 	   
 	   
 	   login = new JButton("Логін");
-	   login.setBounds(200, 320, 140, 60);
+	   login.setBounds(x, y, width, height);
+	   login.setFont(f2);
 	   
 	   reestr.addActionListener(new ActionListener() {
 	    public void actionPerformed(ActionEvent event) {
@@ -62,11 +74,12 @@ public class Login_Registration {
 	 }
 	 public static void reestrevent(ActionEvent event){
 		 RegForm rg = new RegForm();
+		 frame.setVisible(false);
 		
 	 }
 	 
 	 public static void loginevent(ActionEvent event){
-	  Login lg = new Login();
-	  //Runtime.getRuntime().exit(1);
+	  LoginForClient lg = new LoginForClient();
+	  frame.setVisible(false);
 	 }
 }

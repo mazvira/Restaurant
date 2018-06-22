@@ -1,5 +1,6 @@
 package project;
 
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +12,7 @@ import java.sql.Statement;
 
 import javax.swing.*;
 
-public class Login {
+public class LoginForClient {
 	
 	JFrame f = new JFrame("User Login");
 	JLabel l = new JLabel("User name");
@@ -19,10 +20,11 @@ public class Login {
 	JTextField t = new JTextField(20);
 	JTextField t1 = new JTextField(20);
 	JButton b = new JButton("Login");
-	Reservation_Ordering bd;
+	Reservation_Ordering_for_Client bd;
 	DatabaseConnectionAndQueries database;
+	int x, y, width, height;
 
-	public Login() {
+	public LoginForClient() {
 		database = new DatabaseConnectionAndQueries();
 		frame();
 	}
@@ -30,17 +32,42 @@ public class Login {
 	public void frame()
 	{
 	
-		f.setSize(600, 400);
+		f.setSize(1300, 1000);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
 		
-		JPanel p = new JPanel();
-		p.add(l);
-		p.add(t);
-		p.add(l1);
-		p.add(t1);
-		p.add(b);
+		Font f1 = new Font("Arial", Font.ITALIC, 18);
+		x = 30;
+		y = 20;
+		width = 200;
+		height = 30;
 		
+		JPanel p = new JPanel();
+		
+		l.setFont(f1);
+		l.setBounds(x, y, width, height);
+		y+=40;
+		p.add(l);
+		
+		t.setFont(f1);
+		t.setBounds(x, y, width, height);
+		y+=40;
+		p.add(t);
+			
+		l1.setFont(f1);
+		l1.setBounds(x, y, width, height);
+		y+=40;
+		p.add(l1);
+		
+		t1.setFont(f1);
+		t1.setBounds(x, y, width, height);
+		y+=40;
+		p.add(t1);
+		
+		b.setFont(f1);
+		b.setBounds(x, y, width, height);
+		y+=40;
+		p.add(b);
 		f.add(p);
 		
 		b.addActionListener(new ActionListener() {
@@ -58,7 +85,7 @@ public class Login {
 						e1.printStackTrace();
 					}				
 					if(count == 1)
-						 bd = new Reservation_Ordering();
+						 bd = new Reservation_Ordering_for_Client();
 					else if(count > 1)
 						JOptionPane.showMessageDialog(null, "Duplicate User, Access denied");
 					else 
